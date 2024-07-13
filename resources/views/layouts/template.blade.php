@@ -75,6 +75,11 @@
     .table-striped>tbody>tr:nth-of-type(odd) {
         --bs-table-accent-bg: none !important;
     }
+
+    div.dataTables_wrapper div.dataTables_length select {
+        width: 70px;
+        display: inline-block;
+    }
 </style>
 
 <body class="g-sidenav-show bg-gray-100">
