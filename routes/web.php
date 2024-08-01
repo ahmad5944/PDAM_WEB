@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-
+use App\Http\Controllers\BahanKimiaController;
+use App\Http\Controllers\JenisBahanKimiaController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\KualitasAirController;
+use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\ReservoarController;
 use App\Http\Controllers\Front\Auth\FrontAuthController;
 use App\Http\Controllers\Front\FrontProductController;
 use App\Http\Controllers\Front\FrontOrderController;
@@ -14,9 +19,9 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CutiController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\KalibrasiController;
 use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,26 +41,14 @@ Route::get('/redirect', [DashboardController::class, 'index']);
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('permission', PermissionController::class);
+    Route::resource('bahanKimia', BahanKimiaController::class);
+    Route::resource('jenisBahanKimia', JenisBahanKimiaController::class);
+    Route::resource('vendorBarang', VendorController::class);
+    Route::resource('kualitasAir', KualitasAirController::class);
+    Route::resource('kalibrasi', KalibrasiController::class);
+    Route::resource('reservoar', ReservoarController::class);
+    Route::resource('satuan', SatuanController::class);
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
-    
-    // Frontend
-    Route::get('/produk', [FrontProductController::class, 'index'])->name('front.index');
-
-    // user profile
-    Route::get('/front-user/{id}', [FrontUserController::class, 'edit'])->name('front.user.edit');
-    Route::patch('/front-user/update/{id}', [FrontUserController::class, 'update'])->name('front.user.update');
-    Route::post('/front-user/store', [FrontUserController::class, 'store'])->name('front.user.store');
-
-    // cart
-    Route::get('/front-cart/{id}', [FrontCartController::class, 'edit'])->name('front.cart');
-    Route::post('/front-add-to-cart/{id}', [FrontCartController::class, 'addToCart'])->name('front.add-to-cart');
-    Route::get('/front-remove-cart/{id}', [FrontCartController::class, 'removeCart'])->name('front.remove-cart');
-    
-    // order
-    Route::get('/front-order', [FrontOrderController::class, 'index'])->name('front.order');
-    Route::get('/front-add-order', [FrontOrderController::class, 'order'])->name('front.order.store');
-    Route::get('/front-cancel-order/{id}', [FrontOrderController::class, 'cancelOrder'])->name('front.cancel-order');
-    Route::get('/front-report-excel/{id}', [FrontOrderController::class, 'excel'])->name('front.report-excel');
 });

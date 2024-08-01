@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\KualitasAir;
 
 class DashboardController extends Controller
 {
@@ -28,8 +29,11 @@ class DashboardController extends Controller
 
     public function index(Request $request){
         $pageBreadcrumbs = self::$pageBreadcrumbs;
+        $totalAirBaku = KualitasAir::sum('air_baku');
+        $totalAirBersih = KualitasAir::sum('air_bersih');
+        $kadarPh = KualitasAir::sum('ph');
 
-        return view('dashboard', compact('pageBreadcrumbs'));
+        return view('dashboard', compact('pageBreadcrumbs', 'totalAirBaku', 'totalAirBersih', 'kadarPh'));
     }
 
 }

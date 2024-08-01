@@ -33,18 +33,104 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $route == 'product.index' ? 'active' : '' }}" href="{{ route('product.index') }}">
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ $route == 'bahanKimia.index' ? 'active' : '' }}" href="{{ route('bahanKimia.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-box-2 text-warning text-sm opacity-10"></i>
+                        <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Product</span>
+                    <span class="nav-link-text ms-1">Kalibrasi</span>
+                </a>
+            </li> --}}
+            <li class="nav-item">
+                <a class="nav-link {{ $route == 'bahanKimia.index' ? 'active' : '' }}" href="{{ route('bahanKimia.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-books text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1"> Bahan Kimia</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $route == 'kalibrasi.index' ? 'active' : '' }}" href="{{ route('kalibrasi.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-compass-04 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1"> Kalibrasi</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $route == 'kualitasAir.index' ? 'active' : '' }}" href="{{ route('kualitasAir.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1"> Kualitas Air</span>
                 </a>
             </li>
             {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">User Management</h6>
             </li> --}}
+            <li class="nav-item">
+                @if ($route == 'bahanKimia.index' || $route == 'jenisBahanKimia.index' || $route == 'satuan.index' || $route == 'vendorBarang.index')
+                    <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link" aria-controls="pagesExamples"
+                        role="button" aria-expanded="true">
+                        <div
+                            class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Master</span>
+                    </a>
+                    <div class="collapse show" id="pagesExamples" style="">
+                    @else
+                        <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link collapsed"
+                            aria-controls="pagesExamples" role="button" aria-expanded="false">
+                            <div
+                                class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                                <i class="ni ni-app text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Master</span>
+                        </a>
+                        <div class="collapse" id="pagesExamples" style="">
+                @endif
+                {{-- <ul class="nav ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link {{ $route == 'bahanKimia.index' ? 'active' : '' }}"
+                            href="{{ route('bahanKimia.index') }}">
+                            <span class="sidenav-mini-icon"> P </span>
+                            <span class="sidenav-normal"> Bahan Kimia </span>
+                        </a>
+                    </li>
+                </ul> --}}
+                <ul class="nav ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link {{ $route == 'jenisBahanKimia.index' ? 'active' : '' }}"
+                            href="{{ route('jenisBahanKimia.index') }}">
+                            <span class="sidenav-mini-icon"> P </span>
+                            <span class="sidenav-normal"> Jenis Bahan Kimia </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link {{ $route == 'vendorBarang.index' ? 'active' : '' }}"
+                            href="{{ route('vendorBarang.index') }}">
+                            <span class="sidenav-mini-icon"> P </span>
+                            <span class="sidenav-normal"> Vendor </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link {{ $route == 'satuan.index' ? 'active' : '' }}"
+                            href="{{ route('satuan.index') }}">
+                            <span class="sidenav-mini-icon"> P </span>
+                            <span class="sidenav-normal"> Satuan </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item">
                 @if ($route == 'user.index' || $route == 'role.index' || $route == 'permission.index')
                     <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link" aria-controls="pagesExamples"
