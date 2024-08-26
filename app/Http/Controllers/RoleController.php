@@ -111,13 +111,17 @@ class RoleController extends Controller
     {
         // audit trail buat yg method post
         $req = $request->all();
-
         $role->update([
             'name' => $req['name'],
         ]);
-        $role->syncPermissions($req['permission']);
+        
+        // Get the permission names based on the selected IDs
+        $permissions = Permission::whereIn('id', $req['permission'])->pluck('name')->toArray();
 
-        return redirect()->route(self::$folderPath.'.index')
+        // Sync the permissions by names
+        $role->syncPermissions($permissions);
+
+        return redirect()->route(self::$folderPath . '.index')
             ->with('success', 'Role Berhasil diupdate');
-    }
+        }
 }

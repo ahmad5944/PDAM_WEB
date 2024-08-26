@@ -14,20 +14,25 @@
                 <div class="card-body">
                     <table class="table table-bordered table-hover w-100">
                         <tr>
-                            <td width="20%">Unit</td>
-                            <td>{{ $data->unit ?? '-' }}</td>
+                            <td width="20%">Jenis Bahan Kimia</td>
+                            <td>{{ $data->jenisBahanKimia->nama ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Date</td>
-                            <td>{{ $data->date ?? '-' }}</td>
+                            <td width="20%">Deksripsi</td>
+                            <td>{{ $data->deskripsi ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Level</td>
-                            <td>{{ $data->level ?? '-' }}</td>
+                            <td width="20%">Stok Pemakaian</td>
+                            <td>{{ $data->stok_pemakaian ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Kubikasi</td>
-                            <td>{{ $data->kubikasi ?? '-' }}</td>
+                            <td width="20%">Jam</td>
+                            <td>{{ $data->jam ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td width="20%">Photo</td>
+                            <td><img src="{{ '/storage/images' . $data->photo }}"
+                                alt="{{ $data->photo }}" width="400"></td>
                         </tr>
                     </table>
                 </div>

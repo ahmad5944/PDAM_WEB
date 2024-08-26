@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="card-title">{{ 'List ' . $pageTitle }}</h5>
-                    <a href="{{ route('kualitasAir.create') }}"
+                    <a href="{{ route('reservoar.create') }}"
                         class="btn btn-primary btn-sm float-right font-weight-bolder mr-1"><i class="ni ni-fat-add"></i> Tambah Data</a>
                 </div>
             </div><br>
@@ -18,10 +18,9 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th width="15%">Unit</th>
-                                <th width="15%">Air Baku</th>
-                                <th width="15%">Air Bersih</th>
-                                <th width="15%">Ph</th>
-                                <th width="15%">Jam</th>
+                                <th width="15%">Date</th>
+                                <th width="15%">Level</th>
+                                <th width="15%">Kubikasi</th>
                                 <th width="1%" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -30,10 +29,9 @@
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $data->unit }}</td>
-                                    <td>{{ $data->air_baku }}</td>
-                                    <td>{{ $data->air_bersih }}</td>
-                                    <td>{{ $data->ph }}</td>
-                                    <td>{{ $data->jam }}</td>
+                                    <td>{{ $data->date }}</td>
+                                    <td>{{ $data->level }}</td>
+                                    <td>{{ $data->kubikasi }}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <span class="" data-bs-toggle="dropdown">
@@ -42,14 +40,14 @@
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('kualitasAir.show', $data->id) }}"><i data-feather='eye'
+                                                        href="{{ route('reservoar.show', $data->id) }}"><i data-feather='eye'
                                                             class="font-small-1 mr-1"></i>Show</a>
                                                 </li>
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('kualitasAir.edit', $data->id) }}"><i data-feather='edit'
+                                                        href="{{ route('reservoar.edit', $data->id) }}"><i data-feather='edit'
                                                             class="font-small-1 mr-1"></i>Edit</a>
                                                 </li>
-                                                <form action="{{ route('kualitasAir.destroy', $data->id) }}" method="POST">
+                                                <form action="{{ route('reservoar.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <li><button type="submit"

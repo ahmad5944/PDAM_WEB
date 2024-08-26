@@ -22,12 +22,20 @@
                             <td>{{ $data->date ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Level</td>
-                            <td>{{ $data->level ?? '-' }}</td>
+                            <td width="20%">Zona</td>
+                            <td>{{ $data->zona ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Kubikasi</td>
-                            <td>{{ $data->kubikasi ?? '-' }}</td>
+                            <td width="20%">Stand 1</td>
+                            <td>{{ $data->stand1 ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td width="20%">Stand 2</td>
+                            <td>{{ $data->stand2 ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td width="20%">Stand 3</td>
+                            <td>{{ $data->stand3 ?? '-' }}</td>
                         </tr>
                     </table>
                 </div>

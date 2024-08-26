@@ -3,30 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kalibrasi;
+use App\Models\StandMeter;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
-class KalibrasiController extends Controller
+class StandMeterController extends Controller
 {
-    public static $pageTitle = 'Kalibrasi';
-    public static $routePath = 'kalibrasi';
-    public static $folderPath = 'kalibrasi';
-    public static $permissionName = 'kalibrasi';
+    public static $pageTitle = 'Stand Meter';
+    public static $routePath = 'standMeter';
+    public static $folderPath = 'standMeter';
+    public static $permissionName = 'standMeter';
     public static $pageBreadcrumbs = [];
 
     function __construct()
     {
-
         self::$pageBreadcrumbs[] = [
-            'page' => '/'.self::$routePath,
-            'title' => 'List '.self::$pageTitle,
+            'page' => '/' . self::$routePath,
+            'title' => 'List ' . self::$pageTitle,
         ];
     }
     public function index()
     {
-        $user = auth()->user();
-        $datas = Kalibrasi::orderBy('created_at', 'DESC')->get();
+        $datas = StandMeter::orderBy('created_at', 'DESC')->get();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -36,7 +34,7 @@ class KalibrasiController extends Controller
     
     public function create(Request $request)
     {
-        $data = new Kalibrasi();
+        $data = new StandMeter();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -51,25 +49,8 @@ class KalibrasiController extends Controller
     public function store(Request $request)
     {
         $req = $request->all();
-        $rules = [
-            'unit'              => 'required',
-            'air_baku'               => 'required',
-            'air_bersih'             => 'required',
-            'ph'             => 'required',
-            'jam'             => 'required',
-        ];
 
-        $custom_messages = [
-            'unit.required'             => 'Unit tidak boleh kosong !',
-            'air_baku.required'              => 'Air Baku tidak boleh kosong !',
-            'air_bersih.required'              => 'Air Bersih tidak boleh kosong !',
-            'ph.required'              => 'Ph tidak boleh kosong !',
-            'jam.required'              => 'Jam tidak boleh kosong !',
-        ];
-
-        $this->validate($request, $rules, $custom_messages);
-
-        Kalibrasi::create($req);
+        StandMeter::create($req);
 
         Alert::success('Berhasil', 'Data Berhasil diTambahkan');
         return redirect()->route(self::$routePath . '.index');
@@ -77,7 +58,7 @@ class KalibrasiController extends Controller
 
     public function show(Request  $request, $id)
     {
-        $data = Kalibrasi::find($id);
+        $data = StandMeter::find($id);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -92,7 +73,7 @@ class KalibrasiController extends Controller
 
     public function edit(Request  $request, $id)
     {
-        $data = Kalibrasi::find($id);
+        $data = StandMeter::find($id);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -104,27 +85,9 @@ class KalibrasiController extends Controller
         return view(self::$folderPath . '.edit', compact('data', 'pageTitle', 'pageBreadcrumbs'));
     }
 
-    public function update(Request $request, Kalibrasi $product)
+    public function update(Request $request, StandMeter $product)
     {
         $req = $request->all();
-        $rules = [
-            'unit'              => 'required',
-            'air_baku'               => 'required',
-            'air_bersih'             => 'required',
-            'ph'             => 'required',
-            'jam'             => 'required',
-        ];
-
-        $custom_messages = [
-            'unit.required'             => 'Unit tidak boleh kosong !',
-            'air_baku.required'              => 'Air Baku tidak boleh kosong !',
-            'air_bersih.required'              => 'Air Bersih tidak boleh kosong !',
-            'ph.required'              => 'Ph tidak boleh kosong !',
-            'jam.required'              => 'Jam tidak boleh kosong !',
-        ];
-
-        $this->validate($request, $rules, $custom_messages);
-
         $product->update($req);
 
         Alert::success('Berhasil', 'User Berhasil diUpdate');
@@ -133,8 +96,8 @@ class KalibrasiController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $data = Kalibrasi::find($id);
-        Kalibrasi::find($id)->delete();
+        $data = StandMeter::find($id);
+        StandMeter::find($id)->delete();
 
         Alert::success('Berhasil', 'Data Berhasil diHapus');
         return redirect()->route(self::$routePath . '.index');

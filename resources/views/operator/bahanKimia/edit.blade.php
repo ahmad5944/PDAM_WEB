@@ -11,7 +11,7 @@
                 </div>
             </div><br>
             <div class="card">
-                <form method="POST" action="{{ route('reservoar.update', $data->id) }}" role="form"
+                <form method="POST" action="{{ route('bahanKimiaOp.update', $data->id) }}" role="form"
                     enctype="multipart/form-data">
                     {{ method_field('PATCH') }}
                     @csrf
@@ -28,37 +28,50 @@
                         <div class="row">
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Unit</label>
-                                    <input type="text" class="form-control @error('unit') is-invalid @enderror"
-                                        placeholder="Unit" name="unit" value="{{ $data->unit }}">
-                                    @error('unit')
+                                    <label class="form-label">Jenis Bahan Kimia</label>
+                                    <select class="form-control @error('jenis_bahan_kimia_id') is-invalid @enderror" name="jenis_bahan_kimia_id">
+                                        <option value="{{ $data->jenis_bahan_kimia_id }}" selected>{{ $data->jenisBahanKimia->nama }}</option>
+                                        @foreach($listBahanKimia as $item)
+                                            <option value="{{ $item->id }}" {{ old('jenis_bahan_kimia_id') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('jenis_bahan_kimia_id')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Date</label>
-                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                        placeholder="Air Baku" name="date" value="{{ $data->date }}">
-                                    @error('date')
+                                    <label class="form-label">Deksripsi</label>
+                                    <input type="text" class="form-control @error('deskripsi') is-invalid @enderror"
+                                        name="deskripsi" value="{{ $data->deskripsi }}">
+                                    @error('deskripsi')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
-                                
+                                <div class="mb-1">
+                                    <label class="form-label">Stok Pemakaian</label>
+                                    <input type="text" class="form-control @error('stok_pemakaian') is-invalid @enderror"
+                                        name="stok_pemakaian" value="{{ $data->stok_pemakaian }}">
+                                    @error('stok_pemakaian')
+                                        <small class="text-danger"><b>{{ $message }}</b></small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Level</label>
-                                    <input type="text" class="form-control @error('level') is-invalid @enderror"
-                                        placeholder="Air Bersih" name="level" value="{{ $data->level }}">
-                                    @error('level')
+                                    <label class="form-label">Jam</label>
+                                    <input type="text" class="form-control @error('jam') is-invalid @enderror"
+                                        name="jam" value="{{ $data->jam }}">
+                                    @error('jam')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Kubikasi</label>
-                                    <input type="text" class="form-control @error('kubikasi') is-invalid @enderror"
-                                        placeholder="Air Bersih" name="kubikasi" value="{{ $data->kubikasi }}">
-                                    @error('kubikasi')
+                                    <label class="form-label">Photo</label>
+                                    <input type="file" class="form-control @error('photo') is-invalid @enderror"
+                                        name="photo" value="{{ $data->photo }}">
+                                    @error('photo')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>

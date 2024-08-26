@@ -42,6 +42,7 @@
                     <span class="nav-link-text ms-1">Kalibrasi</span>
                 </a>
             </li> --}}
+            {{-- @can('bahanKimia-list') --}}
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'bahanKimia.index' ? 'active' : '' }}" href="{{ route('bahanKimia.index') }}">
                     <div
@@ -51,24 +52,7 @@
                     <span class="nav-link-text ms-1"> Bahan Kimia</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $route == 'kalibrasi.index' ? 'active' : '' }}" href="{{ route('kalibrasi.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-compass-04 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1"> Kalibrasi</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $route == 'kualitasAir.index' ? 'active' : '' }}" href="{{ route('kualitasAir.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1"> Kualitas Air</span>
-                </a>
-            </li>
+            {{-- @endcan --}}
             {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">User Management</h6>
             </li> --}}

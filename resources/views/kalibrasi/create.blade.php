@@ -34,15 +34,23 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Date</label>
-                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                        placeholder="Date" name="date">
-                                    @error('date')
+                                    <label class="form-label">Jenis Bahan Kimia</label>
+                                    <input type="text" class="form-control @error('air_baku') is-invalid @enderror"
+                                        placeholder="Air Baku" name="air_baku">
+                                    @error('air_baku')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Air Bersih</label>
+                                    <label class="form-label">Air Baku</label>
+                                    <input type="text" class="form-control @error('air_baku') is-invalid @enderror"
+                                        placeholder="Air Baku" name="air_baku">
+                                    @error('air_baku')
+                                        <small class="text-danger"><b>{{ $message }}</b></small>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Kalibrasi</label>
                                     <input type="text" class="form-control @error('air_bersih') is-invalid @enderror"
                                         placeholder="Air Bersih" name="air_bersih">
                                     @error('air_bersih')
@@ -52,28 +60,29 @@
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Jenis Bahan Kimia</label>
-                                    <select class="form-control @error('jenis_bahan_kimia_id') is-invalid @enderror" name="jenis_bahan_kimia_id">
-                                        <option value="" disabled selected>--Pilih Item--</option>
-                                        @foreach($listBahanKimia as $item)
-                                            <option value="{{ $item->id }}" {{ old('jenis_bahan_kimia_id') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('jenis_bahan_kimia_id')
+                                    <label class="form-label">Air Bersih</label>
+                                    <input type="text" class="form-control @error('air_bersih') is-invalid @enderror"
+                                        placeholder="Air Bersih" name="air_bersih">
+                                    @error('air_bersih')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Dosis</label>
-                                    <input type="text" class="form-control @error('dosis') is-invalid @enderror" name="dosis">
-                                    @error('dosis')
+                                    <label class="form-label">Ph</label>
+                                    <input type="text" class="form-control @error('ph') is-invalid @enderror"
+                                        placeholder="Ph" name="ph">
+                                    @error('ph')
+                                        <small class="text-danger"><b>{{ $message }}</b></small>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Jam</label>
+                                    <input type="time" class="form-control @error('jam') is-invalid @enderror" name="jam">
+                                    @error('jam')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
                     </div>
                     <div class="card-footer">
                         <div class="col-12">

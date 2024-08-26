@@ -7,7 +7,8 @@
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="card-title">{{ 'List ' . $pageTitle }}</h5>
                     <a href="{{ route('kualitasAir.create') }}"
-                        class="btn btn-primary btn-sm float-right font-weight-bolder mr-1"><i class="ni ni-fat-add"></i> Tambah Data</a>
+                        class="btn btn-primary btn-sm float-right font-weight-bolder mr-1"><i class="ni ni-fat-add"></i>
+                        Tambah Data</a>
                 </div>
             </div><br>
             <div class="card">
@@ -42,14 +43,15 @@
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('kualitasAir.show', $data->id) }}"><i data-feather='eye'
-                                                            class="font-small-1 mr-1"></i>Show</a>
+                                                        href="{{ route('kualitasAir.show', $data->id) }}"><i
+                                                            data-feather='eye' class="font-small-1 mr-1"></i>Show</a>
                                                 </li>
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('kualitasAir.edit', $data->id) }}"><i data-feather='edit'
-                                                            class="font-small-1 mr-1"></i>Edit</a>
+                                                        href="{{ route('kualitasAir.edit', $data->id) }}"><i
+                                                            data-feather='edit' class="font-small-1 mr-1"></i>Edit</a>
                                                 </li>
-                                                <form action="{{ route('kualitasAir.destroy', $data->id) }}" method="POST">
+                                                <form action="{{ route('kualitasAir.destroy', $data->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <li><button type="submit"

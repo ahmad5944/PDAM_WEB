@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <table class="table table-bordered table-hover w-100">
                         <tr>
-                            <td width="20%">Unit</td>
+                            <td width="20%">Regu</td>
                             <td>{{ $data->unit ?? '-' }}</td>
                         </tr>
                         <tr>
@@ -22,12 +22,8 @@
                             <td>{{ $data->date ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <td width="20%">Level</td>
-                            <td>{{ $data->level ?? '-' }}</td>
-                        </tr>
-                        <tr>
-                            <td width="20%">Kubikasi</td>
-                            <td>{{ $data->kubikasi ?? '-' }}</td>
+                            <td width="20%">Deskripsi</td>
+                            <td>{{ $data->deskripsi ?? '-' }}</td>
                         </tr>
                     </table>
                 </div>

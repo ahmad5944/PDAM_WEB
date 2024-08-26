@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\BahanKimia;
+use Illuminate\Http\Request;
+use App\Models\BahanKimiaOp;
 use App\Models\JenisBahanKimia;
 use App\Models\Satuan;
 use App\Models\Vendor;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
-class BahanKimiaController extends Controller
+class BahanKimiaOpController extends Controller
 {
     public static $pageTitle = 'Bahan Kimia';
-    public static $routePath = 'bahanKimia';
-    public static $folderPath = 'bahanKimia';
-    public static $permissionName = 'bahanKimia';
+    public static $routePath = 'bahanKimiaOp';
+    public static $folderPath = 'operator/bahanKimia';
+    public static $permissionName = 'bahanKimiaOp';
     public static $pageBreadcrumbs = [];
 
     function __construct()
@@ -33,7 +34,7 @@ class BahanKimiaController extends Controller
     }
     public function index()
     {
-        $datas = BahanKimia::with('jenisBahanKimia','vendor','satuan')->orderBy('created_at', 'DESC')->get();
+        $datas = BahanKimiaOp::with('jenisBahanKimia','vendor','satuan')->orderBy('created_at', 'DESC')->get();
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
 
@@ -42,10 +43,8 @@ class BahanKimiaController extends Controller
     
     public function create(Request $request)
     {
-        $data = new BahanKimia();
+        $data = new BahanKimiaOp();
         $listBahanKimia = JenisBahanKimia::all();
-        $listVendor = Vendor::all();
-        $listSatuan = Satuan::all();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -54,13 +53,26 @@ class BahanKimiaController extends Controller
             'title' => 'Tambah ' . self::$pageTitle,
         ];
 
-        return view(self::$folderPath . '.create', compact('data', 'pageTitle', 'pageBreadcrumbs', 'listBahanKimia', 'listVendor', 'listSatuan'));
+        return view(self::$folderPath . '.create', compact('data', 'pageTitle', 'pageBreadcrumbs', 'listBahanKimia'));
     }
 
     public function store(Request $request)
     {
         $req = $request->all();
-        BahanKimia::create($req);
+        if ($request->hasFile('photo')) {
+            $path_cms = 'public/images/';
+
+            $image = $request->file('photo');
+            $image_name = $image->getClientOriginalName();
+            $request->file('photo')->storeAs($path_cms, $image_name);
+
+            $req['photo'] = '/' . $image_name;
+        }
+        BahanKimiaOp::create($req);
+
+        $stokMsBahanKimia = BahanKimia::where('jenis_bahan_kimia_id', $req['jenis_bahan_kimia_id'])->first();
+        $stok = $stokMsBahanKimia->stok - $req['stok_pemakaian'];
+        $stokMsBahanKimia->update(['stok' => $stok]);
 
         Alert::success('Berhasil', 'Data Berhasil diTambahkan');
         return redirect()->route(self::$routePath . '.index');
@@ -68,7 +80,7 @@ class BahanKimiaController extends Controller
 
     public function show(Request  $request, $id)
     {
-        $data = BahanKimia::find($id);
+        $data = BahanKimiaOp::find($id);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -83,7 +95,7 @@ class BahanKimiaController extends Controller
 
     public function edit(Request  $request, $id)
     {
-        $data = BahanKimia::find($id);
+        $data = BahanKimiaOp::find($id);
         $listBahanKimia = JenisBahanKimia::all();
         $listVendor = Vendor::all();
         $listSatuan = Satuan::all();
@@ -98,9 +110,18 @@ class BahanKimiaController extends Controller
         return view(self::$folderPath . '.edit', compact('data', 'pageTitle', 'pageBreadcrumbs' ,'listBahanKimia', 'listVendor', 'listSatuan'));
     }
 
-    public function update(Request $request, BahanKimia $product)
+    public function update(Request $request, BahanKimiaOp $product)
     {
         $req = $request->all();
+        if ($request->hasFile('photo')) {
+            $path_cms = 'public/images/';
+
+            $image = $request->file('photo');
+            $image_name = $image->getClientOriginalName();
+            $request->file('photo')->storeAs($path_cms, $image_name);
+
+            $req['photo'] = '/' . $image_name;
+        }
         $product->update($req);
 
         Alert::success('Berhasil', 'User Berhasil diUpdate');
@@ -109,8 +130,8 @@ class BahanKimiaController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $data = BahanKimia::find($id);
-        BahanKimia::find($id)->delete();
+        $data = BahanKimiaOp::find($id);
+        BahanKimiaOp::find($id)->delete();
 
         Alert::success('Berhasil', 'Data Berhasil diHapus');
         return redirect()->route(self::$routePath . '.index');

@@ -5,17 +5,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
-                    <h5 class="card-title">{{ 'Edit ' . $pageTitle }}</h5>
+                    <h5 class="card-title">{{ 'Tambah ' . $pageTitle }}</h5>
                     <a href="{{ url()->previous() }}" type="button" class="btn btn-warning btn-sm"><i
                             class="ni ni-bold-left"></i> Back</a>
                 </div>
             </div><br>
             <div class="card">
-                <form method="POST" action="{{ route('reservoar.update', $data->id) }}" role="form"
-                    enctype="multipart/form-data">
-                    {{ method_field('PATCH') }}
+                <form method="POST" action="{{ route('bahanKimiaOp.store') }}" role="form" enctype="multipart/form-data">
                     @csrf
-
                     <div class="card-body">
                         @if ($errors->count() > 0)
                             {{-- @dd($errors) --}}
@@ -28,37 +25,50 @@
                         <div class="row">
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Unit</label>
-                                    <input type="text" class="form-control @error('unit') is-invalid @enderror"
-                                        placeholder="Unit" name="unit" value="{{ $data->unit }}">
-                                    @error('unit')
+                                    <label class="form-label">Jenis Bahan Kimia</label>
+                                    <select class="form-control @error('jenis_bahan_kimia_id') is-invalid @enderror" name="jenis_bahan_kimia_id">
+                                        <option value="" disabled selected>--Pilih Item--</option>
+                                        @foreach($listBahanKimia as $item)
+                                            <option value="{{ $item->id }}" {{ old('jenis_bahan_kimia_id') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('jenis_bahan_kimia_id')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Date</label>
-                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                        placeholder="Air Baku" name="date" value="{{ $data->date }}">
-                                    @error('date')
+                                    <label class="form-label">Deksripsi</label>
+                                    <input type="text" class="form-control @error('deskripsi') is-invalid @enderror"
+                                        name="deskripsi">
+                                    @error('deskripsi')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
-                                
+                                <div class="mb-1">
+                                    <label class="form-label">Stok Pemakaian</label>
+                                    <input type="text" class="form-control @error('stok_pemakaian') is-invalid @enderror"
+                                        name="stok_pemakaian">
+                                    @error('stok_pemakaian')
+                                        <small class="text-danger"><b>{{ $message }}</b></small>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Level</label>
-                                    <input type="text" class="form-control @error('level') is-invalid @enderror"
-                                        placeholder="Air Bersih" name="level" value="{{ $data->level }}">
-                                    @error('level')
+                                    <label class="form-label">Jam</label>
+                                    <input type="time" class="form-control @error('jam') is-invalid @enderror"
+                                        name="jam">
+                                    @error('jam')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Kubikasi</label>
-                                    <input type="text" class="form-control @error('kubikasi') is-invalid @enderror"
-                                        placeholder="Air Bersih" name="kubikasi" value="{{ $data->kubikasi }}">
-                                    @error('kubikasi')
+                                    <label class="form-label">Photo</label>
+                                    <input type="file" class="form-control @error('photo') is-invalid @enderror"
+                                        name="photo">
+                                    @error('photo')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>

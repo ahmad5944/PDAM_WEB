@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\BahanKimia;
 use App\Models\KualitasAir;
 
 class DashboardController extends Controller
@@ -32,8 +33,9 @@ class DashboardController extends Controller
         $totalAirBaku = KualitasAir::sum('air_baku');
         $totalAirBersih = KualitasAir::sum('air_bersih');
         $kadarPh = KualitasAir::sum('ph');
+        $totalStok = BahanKimia::first()->stok;
 
-        return view('dashboard', compact('pageBreadcrumbs', 'totalAirBaku', 'totalAirBersih', 'kadarPh'));
+        return view('dashboard', compact('pageBreadcrumbs', 'totalAirBaku', 'totalAirBersih', 'kadarPh', 'totalStok'));
     }
 
 }

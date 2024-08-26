@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kalibrasi;
+use App\Models\Kegiatan;
 
 use RealRashid\SweetAlert\Facades\Alert;
 
-class KalibrasiController extends Controller
+class KegiatanController extends Controller
 {
-    public static $pageTitle = 'Kalibrasi';
-    public static $routePath = 'kalibrasi';
-    public static $folderPath = 'kalibrasi';
-    public static $permissionName = 'kalibrasi';
+    public static $pageTitle = 'Kegiatan';
+    public static $routePath = 'kegiatan';
+    public static $folderPath = 'kegiatan';
+    public static $permissionName = 'kegiatan';
     public static $pageBreadcrumbs = [];
 
     function __construct()
@@ -26,7 +26,7 @@ class KalibrasiController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $datas = Kalibrasi::orderBy('created_at', 'DESC')->get();
+        $datas = Kegiatan::orderBy('created_at', 'DESC')->get();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -36,7 +36,7 @@ class KalibrasiController extends Controller
     
     public function create(Request $request)
     {
-        $data = new Kalibrasi();
+        $data = new Kegiatan();
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -69,7 +69,7 @@ class KalibrasiController extends Controller
 
         $this->validate($request, $rules, $custom_messages);
 
-        Kalibrasi::create($req);
+        Kegiatan::create($req);
 
         Alert::success('Berhasil', 'Data Berhasil diTambahkan');
         return redirect()->route(self::$routePath . '.index');
@@ -77,7 +77,7 @@ class KalibrasiController extends Controller
 
     public function show(Request  $request, $id)
     {
-        $data = Kalibrasi::find($id);
+        $data = Kegiatan::find($id);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -92,7 +92,7 @@ class KalibrasiController extends Controller
 
     public function edit(Request  $request, $id)
     {
-        $data = Kalibrasi::find($id);
+        $data = Kegiatan::find($id);
 
         $pageTitle = self::$pageTitle;
         $pageBreadcrumbs = self::$pageBreadcrumbs;
@@ -104,7 +104,7 @@ class KalibrasiController extends Controller
         return view(self::$folderPath . '.edit', compact('data', 'pageTitle', 'pageBreadcrumbs'));
     }
 
-    public function update(Request $request, Kalibrasi $product)
+    public function update(Request $request, Kegiatan $product)
     {
         $req = $request->all();
         $rules = [
@@ -133,8 +133,8 @@ class KalibrasiController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $data = Kalibrasi::find($id);
-        Kalibrasi::find($id)->delete();
+        $data = Kegiatan::find($id);
+        Kegiatan::find($id)->delete();
 
         Alert::success('Berhasil', 'Data Berhasil diHapus');
         return redirect()->route(self::$routePath . '.index');

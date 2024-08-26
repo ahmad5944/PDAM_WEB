@@ -4,13 +4,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                {{-- @can('bahanKimia-create') --}}
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="card-title">{{ 'List ' . $pageTitle }}</h5>
-                    <a href="{{ route('bahanKimia.create') }}"
+                    <a href="{{ route('kegiatan.create') }}"
                         class="btn btn-primary btn-sm float-right font-weight-bolder mr-1"><i class="ni ni-fat-add"></i> Tambah Data</a>
                 </div>
-                {{-- @endcan --}}
             </div><br>
             <div class="card">
                 <div class="card-body">
@@ -19,11 +17,9 @@
                         <thead class="thead">
                             <tr>
                                 <th width="1%">No</th>
-                                <th width="5%">Jenis Bahan Kimia</th>
-                                <th>Deskripsi</th>
-                                <th>Vendor</th>
-                                <th>Stok</th>
-                                <th>Satuan</th>
+                                <th width="15%">Regu</th>
+                                <th width="15%">Date</th>
+                                <th width="15%">Deskripsi</th>
                                 <th width="1%" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -31,11 +27,9 @@
                             @foreach ($datas as $data)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>{{ $data->jenisBahanKimia->nama }}</td>
+                                    <td>{{ $data->unit }}</td>
+                                    <td>{{ $data->date }}</td>
                                     <td>{{ $data->deskripsi }}</td>
-                                    <td>{{ $data->vendor->nama }}</td>
-                                    <td>{{ $data->stok }}</td>
-                                    <td>{{ $data->satuan->nama }}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <span class="" data-bs-toggle="dropdown">
@@ -44,14 +38,14 @@
                                             </span>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('bahanKimia.show', $data->id) }}"><i data-feather='eye'
+                                                        href="{{ route('kegiatan.show', $data->id) }}"><i data-feather='eye'
                                                             class="font-small-1 mr-1"></i>Show</a>
                                                 </li>
                                                 <li><a class="dropdown-item font-small-1"
-                                                        href="{{ route('bahanKimia.edit', $data->id) }}"><i data-feather='edit'
+                                                        href="{{ route('kegiatan.edit', $data->id) }}"><i data-feather='edit'
                                                             class="font-small-1 mr-1"></i>Edit</a>
                                                 </li>
-                                                <form action="{{ route('bahanKimia.destroy', $data->id) }}" method="POST">
+                                                <form action="{{ route('kegiatan.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <li><button type="submit"

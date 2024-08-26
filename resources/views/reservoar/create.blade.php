@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Date</label>
+                                    <label class="form-label">Unit</label>
                                     <input type="text" class="form-control @error('unit') is-invalid @enderror"
                                         placeholder="Unit" name="unit">
                                     @error('unit')
@@ -41,34 +41,19 @@
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
-                                <div class="mb-1">
-                                    <label class="form-label">Air Bersih</label>
-                                    <input type="text" class="form-control @error('air_bersih') is-invalid @enderror"
-                                        placeholder="Air Bersih" name="air_bersih">
-                                    @error('air_bersih')
-                                        <small class="text-danger"><b>{{ $message }}</b></small>
-                                    @enderror
-                                </div>
                             </div>
                             <div class="col-md-6 col-6">
                                 <div class="mb-1">
-                                    <label class="form-label">Jenis Bahan Kimia</label>
-                                    <select class="form-control @error('jenis_bahan_kimia_id') is-invalid @enderror" name="jenis_bahan_kimia_id">
-                                        <option value="" disabled selected>--Pilih Item--</option>
-                                        @foreach($listBahanKimia as $item)
-                                            <option value="{{ $item->id }}" {{ old('jenis_bahan_kimia_id') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('jenis_bahan_kimia_id')
+                                    <label class="form-label">Level</label>
+                                    <input type="text" class="form-control @error('level') is-invalid @enderror" name="level">
+                                    @error('level')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label">Dosis</label>
-                                    <input type="text" class="form-control @error('dosis') is-invalid @enderror" name="dosis">
-                                    @error('dosis')
+                                    <label class="form-label">kubikasi</label>
+                                    <input type="text" class="form-control @error('kubikasi') is-invalid @enderror" name="kubikasi">
+                                    @error('kubikasi')
                                         <small class="text-danger"><b>{{ $message }}</b></small>
                                     @enderror
                                 </div>

@@ -3,17 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BahanKimiaController;
+use App\Http\Controllers\BahanKimiaOpController;
 use App\Http\Controllers\JenisBahanKimiaController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\KualitasAirController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ReservoarController;
-use App\Http\Controllers\Front\Auth\FrontAuthController;
-use App\Http\Controllers\Front\FrontProductController;
-use App\Http\Controllers\Front\FrontOrderController;
-use App\Http\Controllers\Front\FrontLoginController;
-use App\Http\Controllers\Front\FrontUserController;
-use App\Http\Controllers\Front\FrontCartController;
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DashboardController;
@@ -21,6 +16,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KalibrasiController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StandMeterController;
+use App\Http\Controllers\KegiatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +44,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('kualitasAir', KualitasAirController::class);
     Route::resource('kalibrasi', KalibrasiController::class);
     Route::resource('reservoar', ReservoarController::class);
+    Route::resource('standMeter', StandMeterController::class);
+    Route::resource('kegiatan', KegiatanController::class);
     Route::resource('satuan', SatuanController::class);
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
+
+    Route::middleware('role:user')->group(function () {
+        Route::resource('bahanKimiaOp', BahanKimiaOpController::class);
+    });
 });
