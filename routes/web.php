@@ -18,6 +18,7 @@ use App\Http\Controllers\KalibrasiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StandMeterController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
+    Route::get('laporan', [ReportController::class, 'index'])->name('report.index');
+    Route::post('download-laporan', [ReportController::class, 'report'])->name('report.download');
 
     Route::middleware('role:user')->group(function () {
         Route::resource('bahanKimiaOp', BahanKimiaOpController::class);

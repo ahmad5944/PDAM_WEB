@@ -52,6 +52,15 @@
                     <span class="nav-link-text ms-1"> Bahan Kimia</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $route == 'report.index' ? 'active' : '' }}" href="{{ route('report.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-building text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1"> Laporan</span>
+                </a>
+            </li>
             {{-- @endcan --}}
             {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">User Management</h6>
@@ -78,15 +87,6 @@
                         </a>
                         <div class="collapse" id="pagesExamples" style="">
                 @endif
-                {{-- <ul class="nav ms-4">
-                    <li class="nav-item">
-                        <a class="nav-link {{ $route == 'bahanKimia.index' ? 'active' : '' }}"
-                            href="{{ route('bahanKimia.index') }}">
-                            <span class="sidenav-mini-icon"> P </span>
-                            <span class="sidenav-normal"> Bahan Kimia </span>
-                        </a>
-                    </li>
-                </ul> --}}
                 <ul class="nav ms-4">
                     <li class="nav-item">
                         <a class="nav-link {{ $route == 'jenisBahanKimia.index' ? 'active' : '' }}"
